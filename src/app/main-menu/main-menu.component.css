@@ -1,0 +1,14 @@
+.MainMenuContainer{
+    align-content: center;
+    padding: 30px;
+    max-width: 400px;
+    margin-left: 360px;
+}
+
+.MenuButton{
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin-left: 100px;
+    margin-top: 10px
+}

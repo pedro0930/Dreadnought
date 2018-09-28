@@ -1,0 +1,64 @@
+<div style="background-color: white; margin: 5%; margin-top: -75px; padding: 10px; opacity: 0.9; min-height: 600px; margin-left: 40px">
+  <div style="margin-left: 5px">
+        <ng-container *ngFor="let element of board; let i = index" overflow="auto">
+          <span  *ngIf="element !=0 && element !=1" class="tile"><button (click)="selectShip(i)"><img src="assets/img/2.jpg"></button>{{element.name}}</span>
+          <span *ngIf="element == 0 " class="tile"></span>
+          <span *ngIf="element == 1 " class="tile" style="color:rgb(0, 225, 255)"><img src="assets/img/sunk.jpg">Sunk</span>
+        </ng-container>
+        <br>
+
+        <ng-container *ngFor="let element of enemyBoard" overflow="auto">
+            <span *ngIf="element !=0 && element !=1" class="tile tooltip"><img src="assets/img/enemy.jpg">{{element.name}}
+              <span  class="tooltiptext">
+                {{element.ClassName}} {{element.Type}}
+                <br>
+                {{element.Guns[0].GunName}}
+                <br>
+                Armor Profile- Belt:{{element.BeltArmor}} Deck:{{element.DeckArmor}}
+                <br>
+                Status: 
+                <span>{{element.HitPoint}} / {{element.baseHP}}</span>
+              </span>
+            </span>
+            <span *ngIf="element == 0 " class="tile"></span>
+            <span *ngIf="element == 1 " class="tile" style="color:rgb(0, 225, 255)"><img src="assets/img/enemySunk.jpg">Sunk</span>
+        </ng-container>
+
+
+        <div *ngIf="controlPanel" class="controlPanel">
+          <div style="min-width: 60%; max-width: 60%; display: inline-block">
+            <h3>{{selectedShip.name}} - {{selectedShip.ship.ClassName}} Class {{selectedShip.ship.Type}}</h3>
+            <p>Ship Status: {{selectedShip.ship.HitPoint}} / {{selectedShip.baseHP}}</p>
+            <p>Movement Point: {{selectedShip.movementPoint}}</p>
+            <p>Attack Avaliable: 
+              <span *ngIf="!selectedShip.Fired" class="green">---</span>
+              <span *ngIf="selectedShip.Fired" class="red">---</span>
+            </p>
+            <h4>Actions:</h4>
+            <label>Fire on Target:</label>
+            <ng-container *ngFor="let enemy of enemyFleet; let i = index">
+              <button *ngIf="!selectedShip.fired" (click)=attack(i)>{{enemy.name}}</button>
+              <button *ngIf="selectedShip.fired" disabled >{{enemy.name}}</button>
+            </ng-container>
+            <br>
+              <label>Launch Torpedo</label>
+              <ng-container *ngFor="let enemy of enemyFleet; let i = index">
+                <button *ngIf="!selectedShip.fired" (click)=torpedo(i)>{{enemy.name}}</button>
+                <button *ngIf="selectedShip.fired" disabled >{{enemy.name}}</button>
+              </ng-container>
+              <br>
+              <label>General Orders</label>
+              <button (click)="evasiveStance()" style="margin: 5px">Evasive Maneuver!</button>
+              <button (click)="closeIn(i)" style="margin: 5px">Close in!</button>
+              <button (click)="endTurn()" style="margin: 5px; background-color: green; color: white">End Turn</button>
+          </div>
+          <div *ngIf="controlPanel" style="display:inline-block;">
+              <img src="assets/img/{{art}}.jpg" style="max-height: 280px; max-width: 350px">
+          </div>
+          </div>
+        </div>
+        <div style="overflow: auto; min-height:250px; max-height: 250px; border: solid black 1px; padding: 10px">
+            <p  *ngFor="let log of battleLog.reverse()">{{log}}</p>
+        </div>
+  </div>
+  

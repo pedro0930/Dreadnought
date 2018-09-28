@@ -1,0 +1,66 @@
+
+.tile{
+    background-color: rgb(0, 225, 255);
+    min-width: 75px;
+    max-width: 75px;
+    min-height: 20px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.tile2{
+    background-color: rgb(255, 0, 0);
+    min-width: 85px;
+    max-width: 85px;
+    min-height: 20px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.green{
+    min-width: 20px;
+    min-height: 20px;
+    color: greenyellow;
+    background-color:greenyellow;
+    border: solid black 1px;
+}
+
+.red{
+    min-width: 20px;
+    min-height: 20px;
+    color: red;
+    background-color:red;
+    border: solid black 1px;
+}
+
+.controlPanel{
+    border: solid black 1px;
+    padding: 10px;
+    width: 98%;
+    display: inline-block
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 250px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

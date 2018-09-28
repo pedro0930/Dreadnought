@@ -1,0 +1,42 @@
+<div style="background-color: white; margin: 5%; margin-top: -75px; padding: 10px; opacity: 0.9; min-height: 600px">
+  <div style="width: 40%; display: inline-block; vertical-align: top; max-height: 400px; overflow: auto">
+    <h3>Current Fleet: (remaining budget: {{budget}} )</h3>
+    <ul *ngFor="let index of fleet; let i = index" >
+      <li><input type="text" value="{{index.name}}" name="{{index.name}}" [(ngModel)]="index.name"> - {{index.ship.ClassName}} Class {{index.ship.Type}} <button (click)=removeShip(i)>Remove</button></li>
+    </ul>
+  </div>
+  <div style="width: 60%; display: inline-block; vertical-align: top">
+    <h3>Buy List:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Class Name</th>
+          <th>Type - Displacement</th>
+          <th>Armaments</th>
+          <th>Cost</th>
+          <th>Speed</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ship of allShips">
+          <td>{{ship.ClassName}}</td>
+          <td>{{ship.Type}} - {{ship.Displacement}}</td>
+          <td>{{ship.Guns[0].GunName}}</td>
+          <td>{{ship.Cost}}</td>
+          <td>{{ship.Speed}}</td>
+          <td><button (click)="addShip(ship)">Add Ship</button><button (click)="showDetail(ship)">Show Details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="OptionContainer">
+  <label>Engagement Type: </label>
+  <select name="engagementType" [(ngModel)]="engagementType" (ngModelChange)="changeGameMode()">
+    <option selected="selected">Destroyer Action</option>
+    <option>Cruiser Clash</option>
+    <option>Fleet Battle</option>
+  </select>
+  <button class="ToBattle" (click)="startGame()">To Battle!</button>
+  </div>
+</div>

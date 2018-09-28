@@ -1,0 +1,15 @@
+.OptionContainer{
+    margin:5% 45%;
+    text-align: center;
+}
+
+.ToBattle{
+    color: white;
+    background-color: red;
+    padding: 20px 20px;
+    border-radius: 5px;
+    font-size: 24pt;
+    min-width: 200px;
+    margin-left: -35px;
+    max-height:80px;
+}

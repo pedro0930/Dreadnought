@@ -1,0 +1,90 @@
+
+  <div style="width: 40%; display: inline-block; background-color: white; margin-left: 10%; padding: 10px; opacity: 0.9; margin-top: -50px" >
+    <h3>Ship Builder</h3>
+    <div>
+      <form (submit)="saveShip()">
+        <label>Class Name</label>
+        <input type="text" name="newShip.ClassName" [(ngModel)]="newShip.ClassName">
+        <br>
+        <label>Type</label>
+        <select name="newShip.Type" [(ngModel)]="newShip.Type">
+          <option>Battleship</option>
+          <option>Armored Cruiser</option>
+          <option>Light Cruiser</option>
+          <option>Destroyer</option>
+        </select>
+        <br>
+        <label>Description</label>
+        <textarea type="text" name="newShip.Description" [(ngModel)]="newShip.Description"></textarea>
+        <br>
+        <label>Guns</label>
+        <select name="newShip.Guns" [(ngModel)]="newShip.Guns">
+          <option *ngFor="let gun of allGuns" value="{{gun._id}}">{{gun.GunName}}</option>
+        </select>
+        <br>
+        <label>Torpedo Attack</label>
+        <input type="number" name="newShip.Torpedo" [(ngModel)]="newShip.Tropedo"  step="250">
+        <br>
+        <label>Speed (knots)</label>
+        <input type="number" name="newShip.Speed" [(ngModel)]="newShip.Speed" >
+        <br>
+        <label>DeckArmor (in)</label>
+        <input type="number" step="0.5" name="newShip.DeckArmor" [(ngModel)]="newShip.DeckArmor" >
+        <br>
+        <label>BeltArmor (in)</label>
+        <input type="number" step="0.5" name="newShip.BeltArmor" [(ngModel)]="newShip.BeltArmor" >
+        <br>
+        <label>HitPoint</label>
+        <input type="number" name="newShip.HitPoint" [(ngModel)]="newShip.HitPoint">
+        <br>
+        
+        <label>Cost</label>
+        <input type="number" name="newShip.Cost" [(ngModel)]="newShip.Cost">
+        <br>
+        <label>Displacement (ton)</label>
+        <input type="number" step="100" name="newShip.Displacement" [(ngModel)]="newShip.Displacement" >
+        <br>
+        <input type="submit" value="Save Ship">      
+        <button (click)="reset()">Reset</button>
+      </form>
+
+    </div>
+    <div>
+      <h3>Gun Builder</h3>
+      <form (submit)="saveGun()">
+        <label>Gun Name</label>
+        <input type="text" name="newGun.GunName" [(ngModel)]="newGun.GunName">
+        <br>
+        <label>Gun No.</label>
+        <input type="Number" name="newGun.NoGun" [(ngModel)]="newGun.NoGun">
+        <br>
+        <label>Gun Type</label>
+        <select name="newGun.GunType" [(ngModel)]="newGun.GunType">
+          <option>Large</option>
+          <option>Medium</option>
+          <option>Small</option>
+        </select>
+        <br>
+        <label>Penetration (in)</label>
+        <input type="number" step="0.5" name="newGun.Penetration" [(ngModel)]="newGun.Penetration">
+        <br>
+        <label>Damage</label>
+        <input type="number" name="newGun.Damage" [(ngModel)]="newGun.Damage">
+        <br>
+        <label>Range (in 1000yards)</label>
+        <input type="number" name="newGun.Range" [(ngModel)]="newGun.Range">
+        <br>
+        <label>Weight</label>
+        <input type="number" name="newGun.Weight" [(ngModel)]="newGun.Weight">
+        <input type="submit" value="Save Gun">
+        
+      </form>
+    </div>
+  </div>
+  <div style="width: 40%; display: inline-block; vertical-align: top; background-color: white; opacity: 0.9; margin-top: -50px">
+    <h3>Ship Class List</h3>
+    <ul *ngFor="let ship of allShips">
+      <li>{{ship.ClassName}} Class - {{ship.Type}} <button (click)="deleteShip(ship._id)">Delete</button></li>
+    </ul>
+  </div>
+
